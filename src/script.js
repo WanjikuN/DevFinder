@@ -11,6 +11,7 @@ const handleForm = (e) => {
 let user = document.getElementById('user').value;
 let li = document.createElement('li');
 li.textContent = user;
+li.setAttribute('class','listy')
 namesList.appendChild(li);
 form.reset();
 };

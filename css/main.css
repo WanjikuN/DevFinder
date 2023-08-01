@@ -1,0 +1,52 @@
+body{
+    background: linear-gradient(rgb(49, 49, 71), rgba(58, 149, 149, 0.423));
+    height: 95vh;
+    color: white;
+    font-family:Arial, Helvetica, sans-serif
+}
+#main_container{
+    /* border: 2px solid black; */
+    padding: 20px;
+    margin: 5% 10% 5% 10% ;
+    height: 85vh;
+    
+}
+#added_names{
+    border-top: 2px solid rgba(58, 149, 149, 0.423);
+    border-radius: 40px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.listy{
+    padding: 2%;
+}
+#user{
+    padding: 10px;
+    width:300px;
+    border-radius: 5px
+}
+#search_form{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form button{
+    padding: 2px;
+    width:40px;
+    font-size: 20px;
+    
+}
+button{
+    padding: 5px;
+    border-radius: 4px;
+    background-color: rgba(49, 49, 71, 0.229) ;
+    color: white;
+    cursor: pointer;
+
+}
+button:hover{
+    font-size: 20px;
+}
