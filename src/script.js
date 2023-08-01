@@ -57,8 +57,13 @@ const handleSearch =()=>{
                 </div>
             `
             results.appendChild(div);
-        })
 
+        })
+        
     })
-    
+    clearListArea();
 }
+// Clear the list section one search button is clicked on
+const clearListArea = () => {
+    namesList.innerHTML = ''; 
+  };
