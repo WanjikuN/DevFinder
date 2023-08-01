@@ -5,10 +5,17 @@ body{
     font-family:Arial, Helvetica, sans-serif;
     overflow: hidden;
 }
+#main_container h1{
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 0px;
+
+}
 #main_container{
     /* border: 2px solid black; */
     padding: 20px;
-    margin: 5% 10% 5% 10% ;
+    margin: 2% 10% 5% 10% ;
     height: 85vh;
     
 }
@@ -80,4 +87,8 @@ img{
     border-radius: 10px;
     padding: 2px;
     margin: 12px;
+}
+#github{
+    width: 50px;
+    
 }
