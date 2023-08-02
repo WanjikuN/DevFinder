@@ -1,7 +1,3 @@
-// create a search form
-    // Adds elements to a ul li 
-    // searches names from the ul
-// A form to add the search inputs
 let namesList = document.getElementById('names_list');
 let form = document.getElementsByTagName('form')[0];
 let latestLength = 0;
@@ -76,22 +72,21 @@ const handleSearch =()=>{
     })
     clearListArea();
 }
+
 // Clear the list section one search button is clicked on
 const clearListArea = () => {
     namesList.innerHTML = ''; 
   };
+// An Iframe to hold the top languages  
 let languages = document.getElementById("languages");
 let iframe = document.createElement("iframe");
 iframe.setAttribute('id', 'linkIframe');
 iframe.setAttribute('name','linkIframe');
 languages.appendChild(iframe);
-// on user click display their most used languages
+
+// on click function to display the users most used languages
 function languagesDisplay(){
     // Display in an Iframe
     let link = document.getElementById('myLink');
     iframe.src = link.href; 
-    
-    
-
-
 }
