@@ -49,6 +49,11 @@ const handleSearch =()=>{
             console.log(data);
             let results = document.getElementById('search_results');
             let div = document.createElement('div');
+            let linkIframe = document.getElementById('linkIframe');
+            let link = document.createElement('a');
+            link.setAttribute('id', 'myLink');
+            link.setAttribute('href',`https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&size_weight=0.5&count_weight=0.5&langs_count=5`);
+            link.setAttribute('target', 'linkIframe');
             div.setAttribute('id', 'results_div');
             div.innerHTML = `
                 <div id="nav">
@@ -60,9 +65,10 @@ const handleSearch =()=>{
                 </div>
                 </div>
             `
-            results.appendChild(div);
-            div.addEventListener('click', ()=>{
-                languagesDisplay(username);
+            link.appendChild(div);
+            results.appendChild(link);
+            link.addEventListener('click', ()=>{
+                languagesDisplay();
             })
 
         })
@@ -74,31 +80,18 @@ const handleSearch =()=>{
 const clearListArea = () => {
     namesList.innerHTML = ''; 
   };
-
+let languages = document.getElementById("languages");
+let iframe = document.createElement("iframe");
+iframe.setAttribute('id', 'linkIframe');
+iframe.setAttribute('name','linkIframe');
+languages.appendChild(iframe);
 // on user click display their most used languages
-function languagesDisplay(user){
-    // Add this code to your JavaScript file
-const apiUrl = 'https://cors-anywhere.herokuapp.com/https://github-readme-stats.vercel.app/api/top-langs?username=WanjikuN&locale=en&langs_count=8';
+function languagesDisplay(){
+    // Display in an Iframe
+    let link = document.getElementById('myLink');
+    iframe.src = link.href; 
+    
+    
 
-// Fetch the data from the GitHub API
-fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    // Process the fetched data
-    const languagesContainer = document.getElementById('languages-container');
 
-    // Create a list to display the languages and their usage percentage
-    const list = document.createElement('ul');
-    for (const language in data) {
-      const item = document.createElement('li');
-      item.textContent = `${language}: ${data[language]}%`;
-      list.appendChild(item);
-    }
-
-    // Add the list to the container
-    languagesContainer.appendChild(list);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
 }

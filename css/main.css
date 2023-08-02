@@ -81,6 +81,8 @@ button:hover{
 }  */
 #div_results{
     display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 img{
     width:120px;
@@ -107,4 +109,12 @@ img{
 }
 li{
     list-style-type: none;
+}
+a{
+    text-decoration: none;;
+    color: white;
+}
+iframe{
+    height: 70vh;
+    border: none;
 }
