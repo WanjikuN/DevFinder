@@ -86,13 +86,14 @@ button:hover{
 }
 img{
     width:120px;
+    padding-right: 2px;
 }
 #nav{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
        
 }
-#nav:hover{
+#results_div:hover{
     background-color: rgba(58, 149, 149, 0.205);
     font-size: 17px;
        
@@ -102,6 +103,9 @@ img{
     border-radius: 10px;
     padding: 2px;
     margin: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 #github{
     width: 50px;

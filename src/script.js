@@ -2,6 +2,7 @@ let namesList = document.getElementById('names_list');
 let form = document.getElementsByTagName('form')[0];
 let latestLength = 0;
 
+
 const handleForm = (e) => {
     e.preventDefault();
 let user = document.getElementById('user').value;
@@ -24,7 +25,7 @@ const handleSearch =()=>{
     let listy = document.getElementsByClassName('listy');
     let listyArray = [...listy];
     listyArray.forEach(l =>{
-        
+
         // extract username
         let uname = l.textContent.split(" ")[1]; 
         function extractUsername(uname) {
@@ -43,6 +44,12 @@ const handleSearch =()=>{
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            let btn = document.createElement('button');
+            btn.id = user;
+            btn.textContent = "Recent repos"
+            btn.addEventListener('click', ()=>{
+                recentRepos(data.login)
+            });
             let results = document.getElementById('search_results');
             let div = document.createElement('div');
             let linkIframe = document.getElementById('linkIframe');
@@ -61,11 +68,15 @@ const handleSearch =()=>{
                 </div>
                 </div>
             `
+            div.appendChild(btn);
             link.appendChild(div);
             results.appendChild(link);
+            
             link.addEventListener('click', ()=>{
-                languagesDisplay();
+               languagesDisplay(data.login);
+               
             })
+            
 
         })
         
@@ -83,10 +94,24 @@ let iframe = document.createElement("iframe");
 iframe.setAttribute('id', 'linkIframe');
 iframe.setAttribute('name','linkIframe');
 languages.appendChild(iframe);
+let lang_nav = document.getElementById('lang_nav');
+
 
 // on click function to display the users most used languages
-function languagesDisplay(){
+function languagesDisplay(user){  
+    // recentRepos(user)  
     // Display in an Iframe
     let link = document.getElementById('myLink');
     iframe.src = link.href; 
 }
+function recentRepos(username) {
+    // Fetch and display recent repos for the specific user
+    fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=5`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); // Here, you have the array of recent repos for the user
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
