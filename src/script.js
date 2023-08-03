@@ -69,12 +69,22 @@ const handleSearch =()=>{
             results.appendChild(link);
             let btn = document.createElement('button');
             link.addEventListener('mouseover', ()=>{
-               
+            let modal = document.getElementById("myModal");         
+            let span = document.getElementsByClassName("close")[0]; 
                 btn.id = data.login;
-                btn.textContent = "Recent repos"
+                btn.textContent = "Profile"
                 btn.addEventListener('click', ()=>{
-                    recentRepos(data.login)
+                    modal.style.display = "block";
+                    // recentRepos(data.login)
                 });
+                span.onclick = function() {
+                    modal.style.display = "none";
+                  }
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                      modal.style.display = "none";
+                    }
+                  }
                 link.appendChild(btn);
                 btn.style.display = "block"
             })
@@ -117,34 +127,34 @@ function languagesDisplay(user){
     iframe.src = link.href; 
 }
 function recentRepos(username) {
-   iframe.style.display = "none";
-//    iframeVisibility();
-    // Fetch and display recent repos for the specific user
-    fetch(`https://api.github.com/users/${username}/repos?sort=created`)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data); 
+    modal.style.display = "block";
+// //    iframeVisibility();
+//     Fetch and display recent repos for the specific user
+    // fetch(`https://api.github.com/users/${username}/repos?sort=created`)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log(data); 
         
-        data.map(d=>{
-            let card = document.createElement('div');
-            card.setAttribute('class', 'repos');
-            card.innerHTML =`
-            <div id="nav_repos">
-            <h4>${d.name}<h4>
-            <a id="repo_link" href="https://github.com/${d.owner.login}/${d.name}" target="_blank" title="GitHub Link">🏹</a>
-            </div>
-            <div id="body_repos">
-            <p>Top Language: ${d.language} </p>
-            <p>${(d.created_at).split('T')[0]} <p>
-            <div>
+    //     data.map(d=>{
+    //         let card = document.createElement('div');
+    //         card.setAttribute('class', 'repos');
+    //         card.innerHTML =`
+    //         <div id="nav_repos">
+    //         <h4>${d.name}<h4>
+    //         <a id="repo_link" href="https://github.com/${d.owner.login}/${d.name}" target="_blank" title="GitHub Link">🏹</a>
+    //         </div>
+    //         <div id="body_repos">
+    //         <p>Top Language: ${d.language} </p>
+    //         <p>${(d.created_at).split('T')[0]} <p>
+    //         <div>
             
-            ` 
-            languages.appendChild(card);
-        })
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+    //         ` 
+    //         languages.appendChild(card);
+    //     })
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching data:', error);
+    //   });
   }
   function iframeVisibility() {
     if (iframe.style.display == "none") {
