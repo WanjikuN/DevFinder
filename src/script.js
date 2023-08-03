@@ -133,12 +133,12 @@ function languagesDisplay(){
 function recentRepos(username) {
     
     let modal_body = document.getElementsByClassName('modal-body')[0];
-    modal_body.innerHTML = '';
+    // modal_body.innerHTML = '';
     let modal_div = document.createElement('div');
     modal_div.setAttribute('id', 'recent');
 // //    iframeVisibility();
 //     Fetch and display recent repos for the specific user
-     fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=5`)
+     fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=10`)
       .then(response => response.json())
       .then(data => {
         // console.log(data); 
@@ -157,6 +157,7 @@ function recentRepos(username) {
             <div>
             
             ` 
+            
         modal_div.appendChild(card)
         
         })
@@ -178,6 +179,16 @@ function recentRepos(username) {
 function modalData(data){
         console.log(data);
     let modal_header = document.getElementsByClassName('modal-header')[0];
+    let div = document.createElement('div');
+    div.setAttribute('class', 'rating');
+    for(let i=0; i<5; i++) {
+        let span = document.createElement('span');
+        span.setAttribute('data-star',i);
+        span.setAttribute('class', 'star');
+        span.innerHTML = `&#9733;`
+        div.appendChild(span);
+    }
+    
     modal_header.innerHTML =`
     <img  src="${data.avatar_url} id="avatar1">
     <h3>${data.login}</h3>
@@ -189,6 +200,24 @@ function modalData(data){
     </div>  
     <a id="gh" href="${data.html_url}" target="_blank"><img id="github" src="./images/download.png" alt="github" ></a>
     `
+    modal_header.appendChild(div);
+    // Add stars for rating
+    let stars = document.getElementsByClassName('star');
+    function changeColor(num) {
+        for (let i = 0; i < stars.length; i++) {
+          if (i <= num) {
+            stars[i].style.color = 'yellow';
+          } else {
+            stars[i].style.color = 'gray';
+          }
+        }
+      }
+      for (let i = 0; i < stars.length; i++) {
+        stars[i].addEventListener('click', function() {
+          let starNumber = parseInt(this.getAttribute('data-star'));
+          changeColor(starNumber);
+        });
+      }
     
    recentRepos(data.login); 
 

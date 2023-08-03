@@ -66,7 +66,7 @@ button:hover{
     padding: 15px;
     align-content:center ;
     /* margin: 0% 20% 0% 15%; */
-    height: 62vh;
+    height: 60vh;
     overflow-y: auto;
     width: 60%;
 }
@@ -237,5 +237,14 @@ iframe{
     border-radius: 4px;
 
 }
-  
-  
+/* reting */
+.star {
+    font-size: 24px;
+    color: #ccc;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+.star:hover{
+    color: #ffcc00 ;
+
+}
