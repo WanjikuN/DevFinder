@@ -132,6 +132,9 @@ iframe{
     border-bottom: 1px solid rgba(49, 49, 71, 0.307);
     border-radius: 12px;
     margin: 10px;
+    margin-right: 40%;
+    background: linear-gradient(rgba(49, 49, 71, 0.347), rgba(58, 149, 149, 0.242));
+    padding:10px;
     
 }
 .repos:hover{
@@ -163,6 +166,7 @@ iframe{
     width: 100%; /* Full width */
     height: 100vh; /* Full height */
     overflow: auto; /* Enable scroll if needed */
+    border-radius: 4px;
   
   }
   
@@ -209,11 +213,12 @@ iframe{
   .modal-body {
     padding: 2px 16px;
     width: 60%;
+    overflow-y: hidden;
     
 
 }
 #recent{
-    height: 90%;
+    height: 100%;
     overflow-y: auto;
     
 }

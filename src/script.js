@@ -3,7 +3,7 @@ let form = document.getElementsByTagName('form')[0];
 let latestLength = 0;
 let modal = document.getElementById("myModal");         
 let span = document.getElementsByClassName("close")[0]; 
-let btn = document.createElement('button');
+
 
 
 const handleForm = (e) => {
@@ -51,6 +51,7 @@ const handleSearch =()=>{
             let results = document.getElementById('search_results');
             let div = document.createElement('div');
             let linkIframe = document.getElementById('linkIframe');
+            let btn = document.createElement('button');
             let link = document.createElement('a');
             link.setAttribute('id', 'myLink');
             link.setAttribute('href',`https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&size_weight=0.5&count_weight=0.5&langs_count=5`);
@@ -74,7 +75,6 @@ const handleSearch =()=>{
             btn.textContent = "Profile"
             btn.addEventListener('click', ()=>{
                 modal.style.display = "block";
-                
                 modalData(data)
                     // recentRepos(data.login)
                 });
