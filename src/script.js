@@ -44,12 +44,7 @@ const handleSearch =()=>{
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            let btn = document.createElement('button');
-            btn.id = user;
-            btn.textContent = "Recent repos"
-            btn.addEventListener('click', ()=>{
-                recentRepos(data.login)
-            });
+            
             let results = document.getElementById('search_results');
             let div = document.createElement('div');
             let linkIframe = document.getElementById('linkIframe');
@@ -68,15 +63,31 @@ const handleSearch =()=>{
                 </div>
                 </div>
             `
-            div.appendChild(btn);
+            // div.appendChild(btn);
+           
             link.appendChild(div);
             results.appendChild(link);
-            
+            let btn = document.createElement('button');
+            link.addEventListener('mouseover', ()=>{
+               
+                btn.id = data.login;
+                btn.textContent = "Recent repos"
+                btn.addEventListener('click', ()=>{
+                    recentRepos(data.login)
+                });
+                link.appendChild(btn);
+                btn.style.display = "block"
+            })
+            link.addEventListener('mouseout', ()=>{
+                btn.style.display = 'none';
+                
+
+            })
             link.addEventListener('click', ()=>{
                languagesDisplay(data.login);
                
             })
-            
+                       
 
         })
         
@@ -99,19 +110,46 @@ let lang_nav = document.getElementById('lang_nav');
 
 // on click function to display the users most used languages
 function languagesDisplay(user){  
-    // recentRepos(user)  
+    // recentRepos(user) 
     // Display in an Iframe
+    // iframeVisibility();
     let link = document.getElementById('myLink');
     iframe.src = link.href; 
 }
 function recentRepos(username) {
+   iframe.style.display = "none";
+//    iframeVisibility();
     // Fetch and display recent repos for the specific user
-    fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=5`)
+    fetch(`https://api.github.com/users/${username}/repos?sort=created`)
       .then(response => response.json())
       .then(data => {
-        console.log(data); // Here, you have the array of recent repos for the user
+        console.log(data); 
+        
+        data.map(d=>{
+            let card = document.createElement('div');
+            card.setAttribute('class', 'repos');
+            card.innerHTML =`
+            <div id="nav_repos">
+            <h4>${d.name}<h4>
+            <a id="repo_link" href="https://github.com/${d.owner.login}/${d.name}" target="_blank" title="GitHub Link">🏹</a>
+            </div>
+            <div id="body_repos">
+            <p>Top Language: ${d.language} </p>
+            <p>${(d.created_at).split('T')[0]} <p>
+            <div>
+            
+            ` 
+            languages.appendChild(card);
+        })
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
+  }
+  function iframeVisibility() {
+    if (iframe.style.display == "none") {
+      iframe.style.display = "block";
+    } else {
+      iframe.style.display = "none";
+    }
   }

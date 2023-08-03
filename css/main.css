@@ -75,10 +75,14 @@ button:hover{
     width: 0;
     height: 0;
   }
-/* #languages{
-    border: 1px solid black;
-    width: 40%;
-}  */
+#languages{
+    /* border: 1px solid black; */
+    height: 60vh;
+    /* width: 70%; */
+    margin-bottom: 4px;
+    overflow-y: auto;
+
+} 
 #div_results{
     display: flex;
     justify-content: space-between;
@@ -121,4 +125,31 @@ a{
 iframe{
     height: 60vh;
     border: none;
+}
+.repos{
+    border-left: 1px solid rgba(49, 49, 71, 0.307);
+    border-right: 1px solid rgba(49, 49, 71, 0.307);
+    border-bottom: 1px solid rgba(49, 49, 71, 0.307);
+    border-radius: 12px;
+    margin: 10px;
+    
+}
+.repos:hover{
+    border-left: 3px solid rgba(49, 49, 71, 0.307);
+    border-right: 3px solid rgba(49, 49, 71, 0.307);
+    border-bottom: 3px solid rgba(49, 49, 71, 0.307);
+ 
+}
+#nav_repos, #body_repos{
+    display:flex;
+    justify-content: space-between;
+}
+#body_repos{
+    align-items: flex-end;
+    font-size: 15px;
+}
+#repo_link:hover{
+    font-size: 20px;
+    background-color: rgba(49, 49, 71, 0.308);
+    padding: 5px;
 }
