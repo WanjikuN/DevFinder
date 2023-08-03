@@ -208,8 +208,14 @@ iframe{
   
   .modal-body {
     padding: 2px 16px;
-    width: 60%
+    width: 60%;
+    
 
+}
+#recent{
+    height: 90%;
+    overflow-y: auto;
+    
 }
 #followers{
     display: flex;

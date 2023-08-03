@@ -3,6 +3,7 @@ let form = document.getElementsByTagName('form')[0];
 let latestLength = 0;
 let modal = document.getElementById("myModal");         
 let span = document.getElementsByClassName("close")[0]; 
+let btn = document.createElement('button');
 
 
 const handleForm = (e) => {
@@ -38,14 +39,14 @@ const handleSearch =()=>{
               return uname.trim();
             }
           } 
-        console.log(extractUsername(uname))
+        // console.log(extractUsername(uname))
         let username = extractUsername(uname);
          // Get method
         //conume Github api to get user details
         fetch(`https://api.github.com/users/${username}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             
             let results = document.getElementById('search_results');
             let div = document.createElement('div');
@@ -69,15 +70,19 @@ const handleSearch =()=>{
            
             link.appendChild(div);
             results.appendChild(link);
-            let btn = document.createElement('button');
-            link.addEventListener('mouseover', ()=>{
             btn.id = data.login;
             btn.textContent = "Profile"
             btn.addEventListener('click', ()=>{
                 modal.style.display = "block";
+                
                 modalData(data)
                     // recentRepos(data.login)
                 });
+            link.addEventListener('mouseover', ()=>{
+            
+                
+                link.appendChild(btn);
+                btn.style.display = "block"
                 span.onclick = function() {
                     modal.style.display = "none";
                   }
@@ -86,8 +91,6 @@ const handleSearch =()=>{
                       modal.style.display = "none";
                     }
                   }
-                link.appendChild(btn);
-                btn.style.display = "block"
             })
             link.addEventListener('mouseout', ()=>{
                 btn.style.display = 'none';
@@ -120,42 +123,49 @@ let lang_nav = document.getElementById('lang_nav');
 
 
 // on click function to display the users most used languages
-function languagesDisplay(user){  
-    // recentRepos(user) 
+function languagesDisplay(){  
+    
     // Display in an Iframe
     // iframeVisibility();
     let link = document.getElementById('myLink');
     iframe.src = link.href; 
 }
 function recentRepos(username) {
-    modal.style.display = "block";
+    
+    let modal_body = document.getElementsByClassName('modal-body')[0];
+    modal_body.innerHTML = '';
+    let modal_div = document.createElement('div');
+    modal_div.setAttribute('id', 'recent');
 // //    iframeVisibility();
 //     Fetch and display recent repos for the specific user
-    // fetch(`https://api.github.com/users/${username}/repos?sort=created`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data); 
+     fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=5`)
+      .then(response => response.json())
+      .then(data => {
+        // console.log(data); 
         
-    //     data.map(d=>{
-    //         let card = document.createElement('div');
-    //         card.setAttribute('class', 'repos');
-    //         card.innerHTML =`
-    //         <div id="nav_repos">
-    //         <h4>${d.name}<h4>
-    //         <a id="repo_link" href="https://github.com/${d.owner.login}/${d.name}" target="_blank" title="GitHub Link">🏹</a>
-    //         </div>
-    //         <div id="body_repos">
-    //         <p>Top Language: ${d.language} </p>
-    //         <p>${(d.created_at).split('T')[0]} <p>
-    //         <div>
+        data.forEach(d=>{
+            let card = document.createElement('div');
+            card.setAttribute('class', 'repos');
+            card.innerHTML =`
+            <div id="nav_repos">
+            <h4>${d.name}<h4>
+            <a id="repo_link" href="https://github.com/${d.owner.login}/${d.name}" target="_blank" title="GitHub Link">🏹</a>
+            </div>
+            <div id="body_repos">
+            <p>Top Language: ${d.language} </p>
+            <p>${(d.created_at).split('T')[0]} <p>
+            <div>
             
-    //         ` 
-    //         languages.appendChild(card);
-    //     })
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching data:', error);
-    //   });
+            ` 
+        modal_div.appendChild(card)
+        
+        })
+        modal_body.appendChild(modal_div);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    
   }
   function iframeVisibility() {
     if (iframe.style.display == "none") {
@@ -165,8 +175,8 @@ function recentRepos(username) {
     }
    
   }
-const modalData = (data)=>{
-        console.log(data.login);
+function modalData(data){
+        console.log(data);
     let modal_header = document.getElementsByClassName('modal-header')[0];
     modal_header.innerHTML =`
     <img  src="${data.avatar_url} id="avatar1">
@@ -180,4 +190,6 @@ const modalData = (data)=>{
     <a id="gh" href="${data.html_url}" target="_blank"><img id="github" src="./images/download.png" alt="github" ></a>
     `
     
+   recentRepos(data.login); 
+
   }
