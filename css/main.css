@@ -197,15 +197,33 @@ iframe{
   }
   
   .modal-header {
-    padding: 2px 16px;
-    /* background-color: #5cb85c; */
+    padding: 30px;
+    background-color: rgb(49, 49, 71);
     color: white;
-    width: 40%
+    width: 30%;
+    display:flex;
+    align-items: center;
+    flex-direction: column;    
   }
   
   .modal-body {
     padding: 2px 16px;
     width: 60%
+
+}
+#followers{
+    display: flex;
+    justify-content: space-around;
+}
+#gh:hover{
+    font-size: 20px;
+    background-color: rgba(58, 149, 149, 0.423);
+    border-radius: 50%;
+
+}
+.modal-header img{
+    width: 170px;
+    border-radius: 4px;
 
 }
   

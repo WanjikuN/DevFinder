@@ -1,6 +1,8 @@
 let namesList = document.getElementById('names_list');
 let form = document.getElementsByTagName('form')[0];
 let latestLength = 0;
+let modal = document.getElementById("myModal");         
+let span = document.getElementsByClassName("close")[0]; 
 
 
 const handleForm = (e) => {
@@ -69,12 +71,11 @@ const handleSearch =()=>{
             results.appendChild(link);
             let btn = document.createElement('button');
             link.addEventListener('mouseover', ()=>{
-            let modal = document.getElementById("myModal");         
-            let span = document.getElementsByClassName("close")[0]; 
-                btn.id = data.login;
-                btn.textContent = "Profile"
-                btn.addEventListener('click', ()=>{
-                    modal.style.display = "block";
+            btn.id = data.login;
+            btn.textContent = "Profile"
+            btn.addEventListener('click', ()=>{
+                modal.style.display = "block";
+                modalData(data)
                     // recentRepos(data.login)
                 });
                 span.onclick = function() {
@@ -162,4 +163,21 @@ function recentRepos(username) {
     } else {
       iframe.style.display = "none";
     }
+   
+  }
+const modalData = (data)=>{
+        console.log(data.login);
+    let modal_header = document.getElementsByClassName('modal-header')[0];
+    modal_header.innerHTML =`
+    <img  src="${data.avatar_url} id="avatar1">
+    <h3>${data.login}</h3>
+    <hr>
+    <p>Bio: ${data.bio}</p>
+    <p>Public Repos: ${data.public_repos}</p>  
+    <div id="followers"><p>Followers: ${data.followers}  |</p>
+    <p>| Following: ${data.following} </p>
+    </div>  
+    <a id="gh" href="${data.html_url}" target="_blank"><img id="github" src="./images/download.png" alt="github" ></a>
+    `
+    
   }
