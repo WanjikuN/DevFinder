@@ -248,3 +248,15 @@ iframe{
     color: #ffcc00 ;
 
 }
+video {
+    position: absolute;
+    bottom: 10px;
+    /* left: 0; */
+    width: 60%;
+    margin-left:10%;
+    /* height: 100%; */
+    z-index: 1;
+    border-radius: 20px;
+    
+}
+

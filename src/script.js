@@ -3,7 +3,7 @@ let form = document.getElementsByTagName('form')[0];
 let latestLength = 0;
 let modal = document.getElementById("myModal");         
 let span = document.getElementsByClassName("close")[0]; 
-
+let vid = document.getElementById("video-container");
 
 
 const handleForm = (e) => {
@@ -24,7 +24,7 @@ form.addEventListener('submit', handleForm);
 // Fetching user details on search
 
 const handleSearch =()=>{
-    
+     
     let listy = document.getElementsByClassName('listy');
     let listyArray = [...listy];
     listyArray.forEach(l =>{
@@ -106,6 +106,7 @@ const handleSearch =()=>{
         })
         
     })
+    vid.style.display = 'none';
     clearListArea();
 }
 
