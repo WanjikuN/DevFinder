@@ -42,7 +42,7 @@ const handleSearch =()=>{
         // console.log(extractUsername(uname))
         let username = extractUsername(uname);
          // Get method
-        //conume Github api to get user details
+        //consume Github api to get user details
         fetch(`https://api.github.com/users/${username}`)
         .then(response => response.json())
         .then(data => {
@@ -94,17 +94,12 @@ const handleSearch =()=>{
             })
             link.addEventListener('mouseout', ()=>{
                 btn.style.display = 'none';
-                
-
             })
             link.addEventListener('click', ()=>{
                languagesDisplay(data.login);
                
-            })
-                       
-
+            })          
         })
-        
     })
     vid.style.display = 'none';
     clearListArea();
@@ -127,7 +122,6 @@ let lang_nav = document.getElementById('lang_nav');
 function languagesDisplay(){  
     
     // Display in an Iframe
-    // iframeVisibility();
     let link = document.getElementById('myLink');
     iframe.src = link.href; 
 }
@@ -137,8 +131,8 @@ function recentRepos(username) {
     modal_body.innerHTML = '';
     let modal_div = document.createElement('div');
     modal_div.setAttribute('id', 'recent');
-// //    iframeVisibility();
-//     Fetch and display recent repos for the specific user
+
+//Fetch and display recent repos for the specific user
      fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=10`)
       .then(response => response.json())
       .then(data => {
