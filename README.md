@@ -36,7 +36,7 @@ To run DevFinder locally, follow these steps:
 
 ## Live Demo
 
-Try out DevFinder [here](https://WanjikuN/github.io/devfinder/).
+Try out DevFinder [here](https://wanjikun.github.io/DevFinder/).
 
 ## License
 
