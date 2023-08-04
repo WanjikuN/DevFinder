@@ -133,7 +133,7 @@ function languagesDisplay(){
 function recentRepos(username) {
     
     let modal_body = document.getElementsByClassName('modal-body')[0];
-    // modal_body.innerHTML = '';
+    modal_body.innerHTML = '';
     let modal_div = document.createElement('div');
     modal_div.setAttribute('id', 'recent');
 // //    iframeVisibility();
