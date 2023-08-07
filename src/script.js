@@ -41,10 +41,15 @@ const handleSearch =()=>{
           } 
         // console.log(extractUsername(uname))
         let username = extractUsername(uname);
+        // Check if valid username
+        if(username){
          // Get method
         //consume Github api to get user details
         fetch(`https://api.github.com/users/${username}`)
-        .then(response => response.json())
+        .then(response => {
+          if(!response.ok){
+            throw new Error(`Invalid GitHub username ${username}`);
+          }else return response.json()})
         .then(data => {
             // console.log(data);
             
@@ -100,6 +105,8 @@ const handleSearch =()=>{
                
             })          
         })
+      }
+
     })
     vid.style.display = 'none';
     clearListArea();
