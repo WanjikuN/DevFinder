@@ -217,10 +217,25 @@ iframe{
     
 
 }
-#recent{
+#md{
+    width: 80%;
     height: 100%;
     overflow-y: auto;
+}
+#recent{
+    height: 100%;
+    /* overflow-y: auto; */
+    display: flex;
+    justify-content: space-between;
+
     
+    
+}
+#recent input{
+    height: 20px;
+    margin-top: 10px;
+    width: 20%;
+    border-radius: 4px;
 }
 #followers{
     display: flex;

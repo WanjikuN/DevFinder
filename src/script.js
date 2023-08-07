@@ -133,14 +133,35 @@ function languagesDisplay(){
     iframe.src = link.href; 
 }
 function recentRepos(username) {
-    
     let modal_body = document.getElementsByClassName('modal-body')[0];
     modal_body.innerHTML = '';
     let modal_div = document.createElement('div');
+    let md = document.createElement('div');
+    md.setAttribute('id', 'md');
     modal_div.setAttribute('id', 'recent');
+    let search = document.createElement('input');
+    search.type = 'text';
+    search.id = 'lang';
+    search.placeholder = 'Language🔍';
+
+    // add an eventlistener to search the input for 
+    // repos using the language
+    search.addEventListener('input', () => {
+      let language = search.value.trim().toLowerCase();
+      let repos = md.getElementsByClassName('repos');
+      // Create elements from class repos into an array and loop
+      Array.from(repos).forEach((repo) => {
+        let repoLanguage = repo.querySelector('p:nth-child(1)').textContent.trim().toLowerCase();
+        if (language === '' || repoLanguage.includes(language)) {
+          repo.style.display = 'block'; 
+        } else {
+          repo.style.display = 'none'; 
+        }
+      })
+    })
 
 //Fetch and display recent repos for the specific user
-     fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=10`)
+     fetch(`https://api.github.com/users/${username}/repos?sort=created`)
       .then(response => response.json())
       .then(data => {
         // console.log(data); 
@@ -159,8 +180,9 @@ function recentRepos(username) {
             <div>
             
             ` 
-            
-        modal_div.appendChild(card)
+         md.appendChild(card) 
+        modal_div.appendChild(md);
+        modal_div.appendChild(search);
         
         })
         modal_body.appendChild(modal_div);
