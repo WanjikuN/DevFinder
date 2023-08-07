@@ -1,10 +1,10 @@
+// Global variables
 let namesList = document.getElementById('names_list');
 let form = document.getElementsByTagName('form')[0];
 let latestLength = 0;
 let modal = document.getElementById("myModal");         
 let span = document.getElementsByClassName("close")[0]; 
 let vid = document.getElementById("video-container");
-
 
 const handleForm = (e) => {
     e.preventDefault();
@@ -22,7 +22,6 @@ form.reset();
 form.addEventListener('submit', handleForm);
 
 // Fetching user details on search
-
 const handleSearch =()=>{
      
     let listy = document.getElementsByClassName('listy');
@@ -39,7 +38,6 @@ const handleSearch =()=>{
               return uname.trim();
             }
           } 
-        // console.log(extractUsername(uname))
         let username = extractUsername(uname);
         // Check if valid username
         if(username){
@@ -50,12 +48,9 @@ const handleSearch =()=>{
           if(!response.ok){
             throw new Error(`Invalid GitHub username ${username}`);
           }else return response.json()})
-        .then(data => {
-            // console.log(data);
-            
+        .then(data => {       
             let results = document.getElementById('search_results');
             let div = document.createElement('div');
-            let linkIframe = document.getElementById('linkIframe');
             let btn = document.createElement('button');
             let link = document.createElement('a');
             link.setAttribute('id', 'myLink');
@@ -71,9 +66,7 @@ const handleSearch =()=>{
                 <p>Public Repos: ${data.public_repos}</p>
                 </div>
                 </div>
-            `
-            // div.appendChild(btn);
-           
+            `       
             link.appendChild(div);
             results.appendChild(link);
             btn.id = data.login;
@@ -81,11 +74,9 @@ const handleSearch =()=>{
             btn.addEventListener('click', ()=>{
                 modal.style.display = "block";
                 modalData(data)
-                    // recentRepos(data.login)
                 });
             link.addEventListener('mouseover', ()=>{
             
-                
                 link.appendChild(btn);
                 btn.style.display = "block"
                 span.onclick = function() {
@@ -149,6 +140,7 @@ function recentRepos(username) {
     search.addEventListener('input', () => {
       let language = search.value.trim().toLowerCase();
       let repos = md.getElementsByClassName('repos');
+
       // Create elements from class repos into an array and loop
       Array.from(repos).forEach((repo) => {
         let repoLanguage = repo.querySelector('p:nth-child(1)').textContent.trim().toLowerCase();
@@ -164,8 +156,7 @@ function recentRepos(username) {
      fetch(`https://api.github.com/users/${username}/repos?sort=created`)
       .then(response => response.json())
       .then(data => {
-        // console.log(data); 
-        
+             
         data.forEach(d=>{
             let card = document.createElement('div');
             card.setAttribute('class', 'repos');
@@ -192,16 +183,9 @@ function recentRepos(username) {
       });
     
   }
-  function iframeVisibility() {
-    if (iframe.style.display == "none") {
-      iframe.style.display = "block";
-    } else {
-      iframe.style.display = "none";
-    }
-   
-  }
+  // add a modal to display user profile
 function modalData(data){
-        console.log(data);
+    console.log(data);
     let modal_header = document.getElementsByClassName('modal-header')[0];
     let div = document.createElement('div');
     div.setAttribute('class', 'rating');
@@ -225,6 +209,7 @@ function modalData(data){
     <a id="gh" href="${data.html_url}" target="_blank"><img id="github" src="./images/download.png" alt="github" ></a>
     `
     modal_header.appendChild(div);
+
     // Add stars for rating
     let stars = document.getElementsByClassName('star');
     function changeColor(num) {

@@ -13,7 +13,6 @@ body{
 
 }
 #main_container{
-    /* border: 2px solid black; */
     padding: 20px;
     margin: 2% 10% 5% 10% ;
     height: 85vh;
@@ -65,7 +64,6 @@ button:hover{
     border-radius: 40px;
     padding: 15px;
     align-content:center ;
-    /* margin: 0% 20% 0% 15%; */
     height: 60vh;
     overflow-y: auto;
     width: 60%;
@@ -76,9 +74,7 @@ button:hover{
     height: 0;
   }
 #languages{
-    /* border: 1px solid black; */
     height: 60vh;
-    /* width: 70%; */
     margin-bottom: 4px;
     overflow-y: auto;
 
@@ -157,21 +153,21 @@ iframe{
     padding: 5px;
 }
 /* Modal */
-.modal {
-    display: none; /* Hidden by default */
-    position: absolute; /* Stay in place */
-    z-index: 1; /* Sit on top */
+.modal{
+    display: none; 
+    position: absolute; 
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100vh; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    width: 100%; 
+    height: 100vh;
+    overflow: auto;
     border-radius: 4px;
   
   }
   
   /* Modal Content */
-  .modal-content {
+.modal-content{
     position: fixed;
     bottom: 9%;
     left: 13%;
@@ -183,9 +179,9 @@ iframe{
     display: flex;
 
 
-  }
+}
   
-  /* The Close Button */
+/* The Close Button */
   .close {
     color: white;
     float: right;
@@ -214,8 +210,6 @@ iframe{
     padding: 2px 16px;
     width: 60%;
     overflow-y: hidden;
-    
-
 }
 #md{
     width: 80%;
@@ -224,12 +218,8 @@ iframe{
 }
 #recent{
     height: 100%;
-    /* overflow-y: auto; */
     display: flex;
-    justify-content: space-between;
-
-    
-    
+    justify-content: space-between;    
 }
 #recent input{
     height: 20px;
@@ -252,7 +242,7 @@ iframe{
     border-radius: 4px;
 
 }
-/* reting */
+/* rating */
 .star {
     font-size: 24px;
     color: #ccc;
@@ -266,10 +256,8 @@ iframe{
 video {
     position: absolute;
     bottom: 10px;
-    /* left: 0; */
     width: 60%;
     margin-left:10%;
-    /* height: 100%; */
     z-index: 1;
     border-radius: 20px;
     
