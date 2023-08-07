@@ -257,9 +257,32 @@ video {
     position: absolute;
     bottom: 10px;
     width: 60%;
-    margin-left:10%;
+    margin:0% 10% 0% 10%;
     z-index: 1;
     border-radius: 20px;
     
 }
-
+/* responsiveness on small screens */
+@media screen and (max-width: 768px) {
+    #main_container {
+      margin: 5% 2% 5% 2%;
+    }
+    #search_form, #search_results {
+      width: 100%;
+    }  
+    #video-container{
+        display: flex;
+        align-items: center;
+    }
+    
+    video {
+      width: 90%;
+      margin: 10% 0;
+      /* border-radius: 20px;
+      height: 70%; */
+    }
+    h1 {
+      font-size: 24px;
+    }
+  
+  }
